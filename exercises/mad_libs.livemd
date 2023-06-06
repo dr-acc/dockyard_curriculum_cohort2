@@ -56,7 +56,11 @@ blank3 = "code"
 Enter your solution below.
 
 ```elixir
+noun1 = "human"
+noun2 = "dreams"
+noun3 = "angst"
 
+"A programmer is a " <> noun1 <> " that turns " <> noun2 <> " into " <> noun3 <> "."
 ```
 
 ## String Interpolation Madlib
@@ -81,7 +85,10 @@ blank3 = "foobar"
 Enter your solution below.
 
 ```elixir
-
+word1 = "Stridberg"
+word2 = "Helium"
+word3 = "Misery"
+"#{word1} and #{word2} combined makes #{word3}."
 ```
 
 ## Commit Your Progress
