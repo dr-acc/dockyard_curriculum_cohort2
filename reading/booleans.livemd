@@ -308,7 +308,7 @@ Here's how we could write this in code. Try changing `guess` to `:heads` to win 
 
 ```elixir
 coin = :heads
-guess = :tails
+guess = :heads
 
 if coin == guess do
   "You win!"
