@@ -172,7 +172,14 @@ family_tree = arthur
 Enter your solution below.
 
 ```elixir
-
+bridget = %{name: "Bridget", status: :grand_parent, age: 70}
+bob = %{name: "Bob", status: :grand_parent, age: 68}
+han = %{name: "Han", status: :grand_parent, age: 81}
+leia = %{name: "Leia", status: :grand_parent, age: 82}
+uther = %{name: "Uther", status: :parent, age: 56, parents: [han, leia]}
+ygraine = %{name: "Uther", status: :parent, age: 56, parents: [han, leia]}
+arthur = %{name: "Arthur", age: 22, status: :child, parents: [uther, ygraine]}
+tree = arthur
 ```
 
 ## Commit Your Progress
