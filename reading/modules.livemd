@@ -120,7 +120,7 @@ end
 Call the `MutliParamExample.call/3` function with different arguments.
 
 ```elixir
-
+MultiParamExample.call("one", "two", "three")
 ```
 
 ## Internal Module Functions
@@ -230,7 +230,7 @@ HigherOrder.higher_order_function(&Callback.callback_function/0)
 Notice we cannot simply pass `Callback.callback_function` as an argument.
 
 ```elixir
-HigherOrder.higher_order_function(Callback.callback_function())
+HigherOrder.higher_order_function("I was called!")
 ```
 
 Alternatively, we can wrap the callback function in an anonymous function.
@@ -318,7 +318,13 @@ end
 Enter your solution below.
 
 ```elixir
+defmodule Languages.Spanish do
+  def greeting do
+    "Hola"
+  end
+end
 
+Languages.Spanish.greeting()
 ```
 
 ### Nested Modules
@@ -357,8 +363,8 @@ We use the `@` symbol to define a compile-time module attribute.
 
 ```elixir
 defmodule Hero do
-  @name "Spider-Man"
-  @nemesis "Green Goblin"
+  @name "Batman"
+  @nemesis "Cat Woman"
 
   def introduce do
     "Hello, my name is #{@name}!"
@@ -516,7 +522,26 @@ end
 </details>
 
 ```elixir
+defmodule Math do
+  @moduledoc """
+  Adding stuff
+  """
+  def add(param1, param2, param3) do
+    @doc """
+    When there are three things to add
+    """
+    param1 + param2 + param3
+  end
 
+  def add(param1, param2) do
+    @doc """
+    When there are two things to add
+    """
+    param1 + param2
+  end
+end
+
+Math.add(1, 2)
 ```
 
 ## Default Arguments
@@ -583,7 +608,13 @@ Greeting.hello("Andrew")
 ```
 
 ```elixir
+defmodule Greeting do
+  def hello(name \\ actual("Moe")) do
+    "Hello #{name}"
+  end
+end
 
+Greeting.hello()
 ```
 
 ## Documentation
