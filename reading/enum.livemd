@@ -384,7 +384,7 @@ Enum.map(1..10, fn integer -> "#{integer}" end)
 Enter your solution below.
 
 ```elixir
-
+Enum.map(1..10, fn integer -> "#{integer}" end)
 ```
 
 ## Enum.reduce/2 And Enum.reduce/3
@@ -506,7 +506,13 @@ end)
 Enter your solution below.
 
 ```elixir
-
+Enum.reduce(1..10, 0, fn int, acc ->
+  if rem(int, 2) == 0 do
+    acc + int
+  else
+    acc
+  end
+end)
 ```
 
 ## Enum.filter
@@ -544,7 +550,7 @@ odd_numbers = Enum.filter(1..10, fn integer -> rem(integer, 2) != 0 end)
 Enter your solution below.
 
 ```elixir
-
+even = Enum.filter()
 ```
 
 ## Enum.all?/2
@@ -696,7 +702,7 @@ Enum.find(["h", "e", "l", "l", "o"], 10, fn each -> is_integer(each) end)
 Use [Enum.find/2](https://hexdocs.pm/elixir/Enum.html#find/2) to find the first even integer in this list.
 
 ```elixir
-Enum.find([1, "2", "three", 4, "five", 6], fn(element) -> element % 2 == 0 )
+Enum.find([1, "2", "three", 4, "five", 6], fn x -> rem(x, 2) == 0 )
 ```
 
 ## Enum.random/1
