@@ -595,6 +595,8 @@ Use [Enum.all/2](https://hexdocs.pm/elixir/Enum.html#all/2) to determine if all 
 
 ```elixir
 colors = [:green, :green, :red]
+
+Enum.all?(colors, fn _color -> :green end)
 ```
 
 ## Enum.any?/2
@@ -635,6 +637,9 @@ Use [Enum.any?/2](https://hexdocs.pm/elixir/Enum.html#any?/2) to determine if an
 
 ```elixir
 animals = [:cats, :dogs, :bears, :lions, :penguins]
+
+Enum.any?(animals, fn dog_in_list -> :dogs in animals)
+
 ```
 
 ## Enum.count/1
@@ -662,6 +667,8 @@ In the Elixir cell below, count the number of elements in the `collection`. It s
 
 ```elixir
 collection = [1, 2, 3, 4, 5]
+
+Enum.count(collection)
 ```
 
 ## Enum.find/3
@@ -689,7 +696,7 @@ Enum.find(["h", "e", "l", "l", "o"], 10, fn each -> is_integer(each) end)
 Use [Enum.find/2](https://hexdocs.pm/elixir/Enum.html#find/2) to find the first even integer in this list.
 
 ```elixir
-[1, "2", "three", 4, "five", 6]
+Enum.find([1, "2", "three", 4, "five", 6], fn(element) -> element % 2 == 0 )
 ```
 
 ## Enum.random/1
@@ -716,7 +723,7 @@ Enum.map(1..10, fn _ -> Enum.random(0..9) end)
 Enter your solution below.
 
 ```elixir
-
+Enum.map(0..9, fn _ -> Enum.random(0..9) end)
 ```
 
 ## Capture Operator And Module Functions
