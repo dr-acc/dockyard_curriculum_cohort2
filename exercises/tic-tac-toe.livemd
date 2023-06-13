@@ -56,10 +56,6 @@ Usually we say grids have an **x** and a **y** axis. Each location in the grid i
 
 <!-- livebook:{"break_markdown":true} -->
 
-![](images/tic_tac_toe_coordinates_grid.png)
-
-<!-- livebook:{"break_markdown":true} -->
-
 We'll use an `{x, y}` tuple to represent a coordinate on the board.
 
 For example, the `"X"` in the top left corner of the board above would be at coordinate `{0, 2}`.
@@ -162,6 +158,9 @@ defmodule TicTacToe do
       "A"
   """
   def at(board, coordinate) do
+    {x, y} = coordinate
+
+    Enum.at(board, 2 - y) |> Enum.at(x)
   end
 
   @doc """
@@ -180,6 +179,11 @@ defmodule TicTacToe do
       [[nil, nil, nil], [nil, "O", nil], [nil, nil, nil]]
   """
   def fill(board, coordinate, symbol) do
+    {x, y} = coordinate
+
+    List.update_at(board, 2 - y, fn row ->
+      List.replace_at(row, x, symbol)
+    end)
   end
 end
 ```
@@ -319,6 +323,10 @@ Determine if a player has won the game.
 def winner(board) do
 end
 ```
+
+<!-- livebook:{"break_markdown":true} -->
+
+![](images/tic_tac_toe_coordinates_grid.png)
 
 ## Commit Your Progress
 
