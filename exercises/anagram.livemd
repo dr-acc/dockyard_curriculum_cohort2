@@ -83,6 +83,22 @@ defmodule Anagram do
     true
   """
   def anagram?(word, possible_anagram) do
+    # comparing two strings: word & possible_anagram
+    # basic lenght could be first comparison 
+    # if length of params !=, return false 
+    # Split both into lists of strings (as letter/individual character)
+    # Sort list
+    # Compare sorted word and sorted possible_anagram
+    # If same return true 
+    if String.length(word) == String.length(possible_anagram) do
+      split_n_sort(word) == split_n_sort(possible_anagram)
+    else
+      false
+    end
+  end
+
+  defp split_n_sort(word) do
+    String.split(word, "", trim: true) |> Enum.sort()
   end
 
   @doc """
@@ -100,6 +116,7 @@ defmodule Anagram do
     []
   """
   def filter_anagrams(word_list, anagram) do
+    Enum.filter(word_list, fn word_list -> anagram?(word_list, anagram) end)
   end
 end
 ```
