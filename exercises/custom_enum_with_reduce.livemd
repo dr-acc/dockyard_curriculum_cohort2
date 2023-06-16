@@ -94,6 +94,9 @@ defmodule CustomEnum do
     [7, 6, 5, 4]
   """
   def reverse(list) do
+    Enum.reduce(list, [], fn each, acc ->
+      [each | acc]
+    end)
   end
 
   @doc """
@@ -108,6 +111,9 @@ defmodule CustomEnum do
     [true, true, true]
   """
   def map(list, callback_function) do
+    Enum.reduce(list, [], fn each, acc ->
+      acc ++ [callback_function.(each)]
+    end)
   end
 
   @doc """
@@ -123,6 +129,13 @@ defmodule CustomEnum do
     ["2", "3"]
   """
   def filter(list, callback_function) do
+    Enum.reduce(list, [], fn each, acc ->
+      if callback_function.(each) do
+        acc ++ [each]
+      else
+        acc
+      end
+    end)
   end
 
   @doc """

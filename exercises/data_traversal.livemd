@@ -84,6 +84,9 @@ defmodule DataTraversal do
   [key1: 30, key2: 50]
   """
   def aggregate(keyword_list) do
+    Enum.reduce(keyword_list, [], fn {k, v}, acc ->
+      Keyword.update(acc, k, v, &(&1 + v))
+    end)
   end
 
   @doc """
