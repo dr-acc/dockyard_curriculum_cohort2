@@ -121,7 +121,21 @@ defmodule Timeline do
     [9, 12, 2]
   """
   def from_dates(dates) do
+    date_pairs = Enum.chunk_every(dates, 2, 1, :discard)
+
+    Enum.map(date_pairs, fn each ->
+      [date1, date2] = each
+      Date.diff(date2, date1)
+    end)
   end
+
+  #   case dates do 
+  #     [] -> "What is time, anyway?"
+  #     [_] -> 
+  #       [ first_date, second_date | rest_of_dates ] = dates
+  #       Date.diff(first_date, second_date)
+  #     end
+  # end
 
   @doc """
   Given a list of "YYYY-MM-DD" strings return a timeline of days between each date.
