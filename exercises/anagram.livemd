@@ -84,7 +84,7 @@ defmodule Anagram do
   """
   def anagram?(word, possible_anagram) do
     # comparing two strings: word & possible_anagram
-    # basic lenght could be first comparison 
+    # basic length could be first comparison 
     # if length of params !=, return false 
     # Split both into lists of strings (as letter/individual character)
     # Sort list
