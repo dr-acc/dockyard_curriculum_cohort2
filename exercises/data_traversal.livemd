@@ -66,6 +66,34 @@ end
 Implement the `DataTraversal` module as documented below.
 
 ```elixir
+# 1. Input/Output
+# Input = keyword list; Example [key: 1, key: 2]
+# Output = integer; Example return: 3
+# 2. Identify the type of problem (map/filter/reduce)
+# Reduce; output we seek is not an enumerable 
+# 3. Define the initial accumulator
+# 99% of the time, initial accumulator should be same type as output desired 
+# "the empty version of a data type"/base case of a data type 
+# sometimes it is the first element in a list
+initial_acc = 0
+# 4. Define the steps of the enumeration.# 5. Define the desired accumulator. (for each step)
+list = [key: 1, key: 2]
+# {:key, 1} -> 1
+# {:key, 2} -> 3
+
+# 6. (optional) Solve one step of the enumeration (at a time)
+acc = 0
+element = {:key, 1}
+result = 1
+
+acc + elem(element, 1)
+# 7. Put the pieces above into a reduce statement
+Enum.reduce(list, 0, fn element, acc ->
+  acc + elem(element, 1)
+end)
+```
+
+```elixir
 defmodule DataTraversal do
   @doc """
   Sum all of the integer values in a keyword list. The keys do not matter.
@@ -74,6 +102,9 @@ defmodule DataTraversal do
   60
   """
   def sum(keyword_list) do
+    Enum.reduce(keyword_list, 0, fn element, acc ->
+      acc + elem(element, 1)
+    end)
   end
 
   @doc """
@@ -84,9 +115,6 @@ defmodule DataTraversal do
   [key1: 30, key2: 50]
   """
   def aggregate(keyword_list) do
-    Enum.reduce(keyword_list, [], fn {k, v}, acc ->
-      Keyword.update(acc, k, v, &(&1 + v))
-    end)
   end
 
   @doc """
@@ -99,6 +127,8 @@ defmodule DataTraversal do
   def merge_maps(maps) do
   end
 end
+
+DataTraversal.sum(key: 10, key: 20, key: 30)
 ```
 
 ## Commit Your Progress
