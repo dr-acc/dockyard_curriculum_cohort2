@@ -81,7 +81,7 @@ defmodule NumberFinder do
   """
   def smallest(number_list) do
     # take in a list
-    # enumarate through list
+    # enumerate through list
     Enum.reduce(number_list, fn each, acc -> (each < acc && each) || acc end)
   end
 
