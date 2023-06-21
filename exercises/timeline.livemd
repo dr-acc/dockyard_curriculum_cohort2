@@ -120,22 +120,41 @@ defmodule Timeline do
     iex> Timeline.from_dates([~D[2020-01-01], ~D[2020-01-10], ~D[2020-01-22], ~D[2020-01-24]])
     [9, 12, 2]
   """
-  def from_dates(dates) do
-    date_pairs = Enum.chunk_every(dates, 2, 1, :discard)
 
-    Enum.map(date_pairs, fn each ->
-      [date1, date2] = each
-      Date.diff(date2, date1)
-    end)
+  # list = [1, 2, 3]
+  # list = [2, 3]
+  # list = [3]
+  # list = []
+
+  # list = [1, 2, 3]
+  # list = [3]
+  # list = []
+  def loop(list) do
+    case list do
+      [] ->
+        "no list left"
+
+      # [head | []] -> "You need two to compare"
+      [head, second | tail] ->
+        IO.inspect({head, second})
+        loop(tail)
+    end
+
+    # date_pairs = Enum.chunk_every(dates, 2, 1, :discard)
+
+    #   Enum.map(date_pairs, fn each ->
+    #     [date1, date2] = each
+    #     Date.diff(date2, date1)
+    #   end)
+    # end
+
+    #   case dates do 
+    #     [] -> "What is time, anyway?"
+    #     [_] -> 
+    #       [ first_date, second_date | rest_of_dates ] = dates
+    #       Date.diff(second_date, first_date)
+    #     end
   end
-
-  #   case dates do 
-  #     [] -> "What is time, anyway?"
-  #     [_] -> 
-  #       [ first_date, second_date | rest_of_dates ] = dates
-  #       Date.diff(first_date, second_date)
-  #     end
-  # end
 
   @doc """
   Given a list of "YYYY-MM-DD" strings return a timeline of days between each date.
@@ -155,6 +174,48 @@ defmodule Timeline do
   def from_strings(date_strings) do
   end
 end
+```
+
+```elixir
+defmodule Loop do
+  def loop(list, acc \\ []) do
+    case list do
+      [] ->
+        acc
+
+      [_] ->
+        acc
+
+      # [head | []] -> "You need two to compare"
+      [head, second | tail] ->
+        IO.inspect(acc)
+        loop([second | tail], [{head, second} | acc])
+    end
+  end
+end
+
+Loop.loop([1, 2, 3])
+```
+
+```elixir
+defmodule Loop do
+  def loop(list, acc \\ 0) do
+    case list do
+      [] ->
+        acc
+
+      [_] ->
+        acc
+
+      # [head | []] -> "You need two to compare"
+      [head, second | tail] ->
+        IO.inspect(acc)
+        loop([second | tail], [{head, second} | acc])
+    end
+  end
+end
+
+Loop.loop([1, 2, 3])
 ```
 
 ## Commit Your Progress
