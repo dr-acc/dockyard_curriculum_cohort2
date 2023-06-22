@@ -138,7 +138,8 @@ defmodule CaesarCypher do
     "ifmmp"
   """
   def encode(string, key) do
-    String.to_charlist(string)
+    string
+    |> String.to_charlist()
     |> Enum.map(fn each ->
       overflow = each + key
       overflow_by = overflow - ?z
