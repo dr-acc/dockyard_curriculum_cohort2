@@ -101,9 +101,24 @@ defmodule Fibonacci do
     iex> Fibonacci.of(20)
     6765
   """
+  def of(0), do: 0
+  def of(1), do: 1
+
   def of(n) do
+    of(n - 1) + of(n - 2)
   end
 end
+
+Fibonacci.of(20)
+```
+
+```elixir
+# n = 20
+# n-1 =  
+
+# [20, 19 ... 0]
+
+# # base case is n = 0 b/c can't subtract more 
 ```
 
 ## Commit Your Progress
