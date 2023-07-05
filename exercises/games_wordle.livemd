@@ -108,7 +108,48 @@ iex> Games.Wordle.feedback("aaabb", "xaaaa")
 [:grey, :green, :green, :yellow, :grey]
 ```
 
-<!-- livebook:{"break_markdown":true} -->
+```elixir
+#I/O String in, Atom out 
+#example: In: "a" -> :green 
+#take in string, break up into enumerable
+#compare each letter 
+#conditional statement 
+  #same letter, same position -> :green
+  #not in word -> :grey
+  #letter in word, not in correct position -> :yellow
+#Instructions: 
+  #All green
+  #All yellow
+  #All grey
+  #some green, yellow, and grey
+
+
+
+def compare_words(game_word, user_word)
+  game_word = String.graphemes(game_word)
+  user_word = String.graphemes(user_word)
+  list_zipped = IO.inspect(Enum.zip(game_word, user_word))
+
+  Enum.map(list_zipped, fn each -> 
+    cond each do
+      elem1 == elem2 -> :green 
+      elem1 != elem2 and not in word -> :grey 
+      elem1 != elem2 and in word -> :yellow
+    end
+  )
+user_guess = ["f", "i", "r", "s", "t"]
+game_word = ["f", "i", "n", "t", "l"]
+  # word = "squid"
+  # |> String.graphemes("")
+  # |> Enum.map(fn each -> 
+  #   cond do 
+  #     each == each -> :green
+
+  #   end
+  #   )
+    #conditional statement could be in the function for the Enum.map
+
+```
 
 ### Play
 
