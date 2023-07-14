@@ -224,8 +224,8 @@ Spawn a linked process and crash this Elixir cell below.
 Comment out your solution when complete to avoid continuously crashing the livebook!
 
 ```elixir
-spawn(fn -> raise "oops" end)
-"the above crashes, but I will keep running."
+# spawn(fn -> raise "oops" end)
+# "the above crashes, but I will keep running."
 ```
 
 ## Message Passing

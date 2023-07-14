@@ -64,7 +64,18 @@ end
 </details>
 
 ```elixir
+defmodule Zero do
+  use Genserver
 
+  @impl true
+  def init(_) do
+    {:ok, 0}
+  end
+end
+
+link_start = start_link(Zero, init_arg, options \\ [])
+# copied from reading: {:ok, pid} = GenServer.start_link(SlowCounter, [])
+:sys.get_state(pid)
 ```
 
 Use [GenServer.start_link/3](https://hexdocs.pm/elixir/GenServer.html#start_link/3) to start your `Zero` [GenServer](https://hexdocs.pm/elixir/GenServer.html) as a named process.
@@ -138,7 +149,18 @@ end
 </details>
 
 ```elixir
+defmodule InitialState do
+  use GenServer
 
+  @impl true
+  def init(opts) do
+    state = Keyword.get(opts, :state, 0)
+    {:ok, state}
+  end
+end
+
+{ok, pid} = Genserver.start_link(Initialstate, [])
+:sys.get_state(pid)
 ```
 
 Create a `State` module.
@@ -197,6 +219,20 @@ State.set(pid, "updated state")
 </details>
 
 ```elixir
+defmodule Satea do
+  use GenServer      
+
+  def start_link(init) do
+    Genserver.start_link(__MODULE__, init)
+  end
+@impl true
+def init(state) do
+  {:ok, state}
+end
+
+def get(pid) do
+  Genserver.call(pid, :get)
+end
 
 ```
 
@@ -226,7 +262,16 @@ Process.whereis(:my_configured_name)
 </details>
 
 ```elixir
+defmodule NamedState do
+  use GenServer
 
+@impl true
+def init(state) do
+  {:ok, state}
+end 
+
+def start_link(opts) do
+  name = Keyword.get(opts, :name, __MODULE__)
 ```
 
 Create a minimal `NamedState` [GenServer](https://hexdocs.pm/elixir/GenServer.html) that can be started and configured as a named process with a configurable state using `NamedState.start_link`. Use `:sys.get_state/1` to confirm the initial state is as expected and [GenServer.whereis/1](https://hexdocs.pm/elixir/GenServer.html#whereis/1) and/or [Process.whereis/1](https://hexdocs.pm/elixir/Process.html#whereis/1) to find the pid of the named process.
